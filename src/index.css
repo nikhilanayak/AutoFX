@@ -1,0 +1,242 @@
+/* ----- Base ----- */
+:root{
+  --text: rgba(243,244,246,0.92);
+  --muted: rgba(243,244,246,0.65);
+  --surface: rgba(255,255,255,0.06);
+  --surface-hover: rgba(255,255,255,0.10);
+  --stroke: rgba(255,255,255,0.22);
+  --stroke-strong: rgba(59,130,246,0.55); /* dashed box like screenshot 1 */
+}
+
+html, body, #root { height: 100%; margin: 0; padding: 0; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: transparent; /* overlay owns bg */
+  color: var(--text);
+}
+
+/* ----- Frame ----- */
+.container {
+  position: fixed; inset: 0; padding: 24px;
+  background: transparent; border-radius: 0; box-shadow: none;
+  backdrop-filter: none; -webkit-backdrop-filter: none;
+  box-sizing: border-box; display: flex; flex-direction: column;
+}
+.container:focus, .container:focus-visible { outline: none; }
+
+.upload-section, .prompt-section {
+  text-align: center; flex: 1;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+}
+
+/* ----- Upload step (lightweight) ----- */
+.upload-area {
+  border: 2px dashed var(--stroke-strong);
+  border-radius: 16px;
+  padding: 80px 40px;
+  text-align: center;
+  margin: 20px 0;
+  background: rgba(59,130,246,0.06);
+  cursor: pointer;
+  transition: transform .2s ease, background .2s ease, border-color .2s ease;
+  flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center;
+}
+.upload-area:hover {
+  border-color: rgba(59,130,246,0.75);
+  background: rgba(59,130,246,0.10);
+  transform: translateY(-2px);
+}
+.upload-area p {
+  margin: 0; font-size: 18px; color: var(--muted); font-weight: 500;
+}
+
+/* Files list (subtle) */
+.files-list { margin: 20px 0; max-height: 200px; overflow-y: auto; flex: 0 0 auto; }
+.file-item {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 16px; margin: 8px 0;
+  background: var(--surface); border: 1px solid var(--stroke); border-radius: 10px;
+}
+.file-item span:first-child { font-weight: 500; color: var(--text); }
+.file-size { color: var(--muted); font-size: 14px; }
+
+/* ----- Prompt step (match upload style; no heavy card) ----- */
+.prompt-section { width: min(720px, 92vw); margin: auto; padding: 0 24px; }
+
+.prompt-container {
+  width: 100%;
+  padding: 16px;
+  border: 1px solid var(--stroke);
+  border-radius: 14px;
+  background: var(--surface);         /* light, like the gray Done button feel */
+  transition: background .2s ease, border-color .2s ease;
+}
+.prompt-container:hover {
+  background: var(--surface-hover);
+  border-color: rgba(255,255,255,0.28);
+}
+
+.prompt-input {
+  width: 100%;
+  padding: 18px;
+  border: 1px solid var(--stroke);
+  border-radius: 12px;
+  font-size: 18px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+  background: rgba(0,0,0,0.35);
+  color: var(--text);
+  font-weight: 500;
+  transition: border-color .2s ease, background .2s ease, box-shadow .2s ease;
+}
+.prompt-input:hover { border-color: rgba(255,255,255,0.32); background: rgba(0,0,0,0.42); }
+.prompt-input:focus {
+  outline: none; border-color: rgba(255,255,255,0.38);
+  background: rgba(0,0,0,0.46);
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.08);
+}
+.prompt-input::placeholder { color: var(--muted); font-weight: 400; }
+
+/* ----- Buttons (shared gray, lightweight) ----- */
+.done-button, .submit-button {
+  appearance: none;
+  background: rgba(255,255,255,0.16);     /* soft gray like screenshot 1 */
+  color: var(--text);
+  border: 1px solid var(--stroke);
+  padding: 12px 32px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 16px; font-weight: 500;
+  transition: transform .2s ease, background .2s ease, box-shadow .2s ease, border-color .2s ease;
+  margin-top: 20px;
+}
+.done-button:hover, .submit-button:hover {
+  background: rgba(255,255,255,0.22);
+  transform: translateY(-1px);
+}
+.done-button:focus, .submit-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.10);
+  transform: translateY(-1px);
+}
+.done-button:disabled, .submit-button:disabled {
+  background: rgba(255,255,255,0.10);
+  color: rgba(243,244,246,0.5);
+  cursor: not-allowed;
+  transform: none; box-shadow: none;
+}
+
+/* ----- Cancel Button (more subdued) ----- */
+.cancel-button {
+  appearance: none;
+  background: rgba(255,255,255,0.12);
+  color: var(--text);
+  border: 1px solid rgba(255,255,255,0.18);
+  padding: 10px 24px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px; 
+  font-weight: 500;
+  transition: transform .2s ease, background .2s ease, box-shadow .2s ease, border-color .2s ease, color .2s ease;
+  margin-top: 16px;
+  display: block;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+.cancel-button:hover {
+  background: rgba(255,255,255,0.18);
+  color: var(--text);
+  border-color: rgba(255,255,255,0.25);
+  transform: translateY(-1px);
+}
+.cancel-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.10);
+  transform: translateY(-1px);
+}
+
+/* ----- Continue Instructions ----- */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: var(--stroke);
+  margin: 24px 0 20px 0;
+}
+
+.continue-text {
+  color: var(--muted);
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+/* ----- Progress Bar ----- */
+.progress-container {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--stroke);
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, rgba(59, 130, 246, 0.8), rgba(59, 130, 246, 1));
+  border-radius: 3px;
+  transition: width 0.3s ease;
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.3);
+}
+
+.progress-status {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 12px;
+}
+
+/* ----- Command Display ----- */
+.command-display {
+  margin-top: 16px;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--stroke);
+  border-radius: 8px;
+}
+
+.command-label {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.command-text {
+  color: var(--text);
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  font-size: 13px;
+  line-height: 1.4;
+  word-break: break-all;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Window drag helpers */
+.draggable { -webkit-app-region: drag; }
+.no-drag { -webkit-app-region: no-drag; }

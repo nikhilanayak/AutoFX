@@ -1,0 +1,27 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="256" cy="256" r="240" fill="#007bff" stroke="#0056b3" stroke-width="8"/>
+  
+  <!-- Video/film icon -->
+  <rect x="160" y="180" width="192" height="152" rx="16" fill="#ffffff" stroke="#0056b3" stroke-width="4"/>
+  
+  <!-- Play button triangle -->
+  <polygon points="200,220 200,292 272,256" fill="#007bff"/>
+  
+  <!-- AI/neural network dots -->
+  <circle cx="120" cy="120" r="8" fill="#ffffff"/>
+  <circle cx="392" cy="120" r="8" fill="#ffffff"/>
+  <circle cx="120" cy="392" r="8" fill="#ffffff"/>
+  <circle cx="392" cy="392" r="8" fill="#ffffff"/>
+  
+  <!-- Connection lines -->
+  <line x1="128" y1="128" x2="384" y2="128" stroke="#ffffff" stroke-width="2" opacity="0.6"/>
+  <line x1="128" y1="384" x2="384" y2="384" stroke="#ffffff" stroke-width="2" opacity="0.6"/>
+  <line x1="128" y1="128" x2="128" y2="384" stroke="#ffffff" stroke-width="2" opacity="0.6"/>
+  <line x1="384" y1="128" x2="384" y2="384" stroke="#ffffff" stroke-width="2" opacity="0.6"/>
+  
+  <!-- Center processing indicator -->
+  <circle cx="256" cy="256" r="20" fill="none" stroke="#ffffff" stroke-width="3" opacity="0.8">
+    <animate attributeName="r" values="20;25;20" dur="2s" repeatCount="indefinite"/>
+  </circle>
+</svg>
